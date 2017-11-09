@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <% if(err) { %>
+      <h1 style="color:red"><%= err %></h1>
+    <% } %>
+    <h1>MOVIE: <%= movie.name %></h1>
+
+    <h2>Add Cast: </h2>
+    <form action="/movies/<%= movie.id %>/addCast" method="post">
+      <label>Actor: </label>
+      <select name="CastId">
+        <% dataCasts.forEach(cast => { %>
+          <option value="<%= cast.id %>"><%= cast.getFullname() %></option>
+        <% }) %>
+      </select><br>
+      <label>Role: </label>
+      <input type="text" name="role" placeholder="e.g: Pemeran Utama Wanita" size="35"><br><br>
+      <button type="submit">Save</button>
+    </form>
+
+    <h2>List Cast: </h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Actor</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if(movie.Casts.length > 0) {
+             movie.Casts.forEach(cast => {
+        %>
+          <tr>
+            <td><%= cast.getFullname() %></td>
+            <td><%= cast.MovieCast.role %></td>
+          </tr>
+        <% })} %>
+      </tbody>
+    </table>
+    <br><br>
+    <a href="/movies">BACK</a>
+  </body>
+</html>

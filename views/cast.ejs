@@ -1,0 +1,41 @@
+<%- include ./partials/header.ejs %>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" style="margin-top:50px"><h1 style="margin:0;">List Casts</h1></div>
+      <div class="col-md-12" style="margin-top:50px;text-align:right;position:relative">
+        <a style="bottom: 0;right: 15px;position: absolute;" class="btn btn-success" href="/casts/add" role="button">Add Item</a>
+      </div>
+      <div class="col-md-12">
+        <table class="table table-hover" border="1">
+          <thead>
+            <tr class="table-info">
+              <th>Name</th>
+              <th>Birth Year</th>
+              <th>Gender</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if(dataCasts && dataCasts.length > 0) {
+                 dataCasts.forEach(cast => {
+            %>
+              <tr>
+                <td><%= cast.getFullname() %></td>
+                <td><%= cast.birth_year %></td>
+                <td><%= cast.gender %></td>
+                <td>
+                  <a class="btn btn-info" href="/casts/edit/<%= cast.id %>" role="button">Edit</a>
+                  <a class="btn btn-info" href="/casts/delete/<%= cast.id %>" role="button">Delete</a>
+                  <a class="btn btn-info" href="/casts/<%= cast.id %>/listMovies" role="button">See Movies</a>
+                </td>
+              </tr>
+            <% })} %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include ./partials/footer.ejs %>

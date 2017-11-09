@@ -1,0 +1,35 @@
+<%- include ./partials/header.ejs %>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="alert alert-dark" role="alert" style="margin-top:50px; margin-left:20px">
+        <h1 style="margin:0;" ><%= cast.getFullname() %></h1>
+      </div>
+      <div class="col-md-12">
+        <table class="table table-hover" border="1">
+          <thead>
+            <tr class="table-info">
+              <th>Movie</th>
+              <th>Released Year</th>
+              <th>Age when Movie Released</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if(cast.Movies.length > 0) {
+                 cast.Movies.forEach(movie => {
+            %>
+              <tr>
+                <td><%= movie.name %></td>
+                <td><%= movie.released_year %></td>
+                <td><%= movie.age %></td>
+                <td><%= movie.MovieCast.role %></td>
+              </tr>
+            <% })} %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include ./partials/footer.ejs %>

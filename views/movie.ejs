@@ -1,0 +1,35 @@
+<%- include ./partials/header.ejs %>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" style="margin-top:50px"><h1 style="margin:0;">List Movies</h1></div>
+      
+      <div class="col-md-12">
+        <table class="table table-hover" border="1">
+          <thead>
+            <tr class="table-info">
+              <th>Movie</th>
+              <th>Released Year</th>
+              <th>Genre</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if(dataMovies && dataMovies.length > 0) {
+                 dataMovies.forEach(movie => {
+            %>
+              <tr>
+                <td><%= movie.name %></td>
+                <td><%= movie.released_year %></td>
+                <td><%= movie.genre %></td>
+                <td><a class="btn btn-info" href="/movies/<%= movie.id %>/addCast" role="button">Add Cast</a></td>
+              </tr>
+            <% })} %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include ./partials/footer.ejs %>
