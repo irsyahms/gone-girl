@@ -1,48 +1,58 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <% if(err) { %>
-      <h1 style="color:red"><%= err %></h1>
-    <% } %>
-    <h1>MOVIE: <%= movie.name %></h1>
-
-    <h2>Add Cast: </h2>
-    <form action="/movies/<%= movie.id %>/addCast" method="post">
-      <label>Actor: </label>
-      <select name="CastId">
-        <% dataCasts.forEach(cast => { %>
-          <option value="<%= cast.id %>"><%= cast.getFullname() %></option>
-        <% }) %>
-      </select><br>
-      <label>Role: </label>
-      <input type="text" name="role" placeholder="e.g: Pemeran Utama Wanita" size="35"><br><br>
-      <button type="submit">Save</button>
+<%- include ./partials/header.ejs %>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 ml-md-auto mr-md-auto" style="margin-top:50px">
+        <% if(err) { %>
+          <div class="alert alert-danger" role="alert">
+            <%= err %>
+          </div>
+        <% } %>
+        <div class="alert alert-dark" role="alert" style="margin-bottom:100px">
+          <h3><%= movie.name %></h3>
+        </div>
+     </div>
+    <form action="/movies/<%= movie.id %>/assignCast" method="post">
+      <h3>Add Cast: </h3>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label>Actor: </label>
+          <select name="CastId" class="form-control">
+            <% dataCasts.forEach(cast => { %>
+              <option value="<%= cast.id %>"><%= cast.getFullname() %></option>
+            <% }) %>
+          </select>
+       </div>
+       <div class="form-group col-md-12">
+          <label>Role: </label>
+          <input type="text" name="role" placeholder="e.g: Pemeran Utama Wanita" size="35" class="form-control"><br><br>
+       </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a class="btn btn-danger" href="/movies">Cancel</a>
     </form>
+  </div>
 
-    <h2>List Cast: </h2>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Actor</th>
-          <th>Role</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% if(movie.Casts.length > 0) {
-             movie.Casts.forEach(cast => {
-        %>
-          <tr>
-            <td><%= cast.getFullname() %></td>
-            <td><%= cast.MovieCast.role %></td>
+    <div class="col-md-12" style="margin-top:50px"><h1 style="margin:0;">List Cast</h1></div>
+    <div class="col-md-12">
+      <table class="table table-hover" border="1">
+        <thead>
+          <tr class="table-info">
+            <th>Actor</th>
+            <th>Role</th>
           </tr>
-        <% })} %>
-      </tbody>
-    </table>
-    <br><br>
-    <a href="/movies">BACK</a>
+        </thead>
+        <tbody>
+          <% if(movie.Casts.length > 0) {
+               movie.Casts.forEach(cast => {
+          %>
+            <tr>
+              <td><%= cast.getFullname() %></td>
+              <td><%= cast.MovieCast.role %></td>
+            </tr>
+          <% })} %>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>

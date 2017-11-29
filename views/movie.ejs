@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12" style="margin-top:50px"><h1 style="margin:0;">List Movies</h1></div>
-      
+
       <div class="col-md-12">
         <table class="table table-hover" border="1">
           <thead>
@@ -22,7 +22,7 @@
                 <td><%= movie.name %></td>
                 <td><%= movie.released_year %></td>
                 <td><%= movie.genre %></td>
-                <td><a class="btn btn-info" href="/movies/<%= movie.id %>/addCast" role="button">Add Cast</a></td>
+                <td><a class="btn btn-info" href="/movies/<%= movie.id %>/assignCast" role="button">Assign Cast</a></td>
               </tr>
             <% })} %>
           </tbody>
